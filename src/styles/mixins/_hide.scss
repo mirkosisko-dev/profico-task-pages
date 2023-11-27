@@ -1,0 +1,21 @@
+@import "@/styles/variables";
+@import "@/styles/mixins/media";
+
+@mixin hideOnMobile {
+  display: none;
+  @include media($tablet) {
+    display: inherit !important;
+  }
+}
+
+@mixin hideOnDesktop {
+  @include media($tablet) {
+    display: none !important;
+  }
+}
+
+@mixin hideOnMobileAndTablet {
+  @include media($desktop, max) {
+    display: none !important;
+  }
+}

@@ -1,0 +1,51 @@
+export const navLinks = [
+  {
+    name: "Home",
+    category: "",
+    icon: "/icons/home.svg",
+    width: 20,
+    height: 20,
+  },
+  {
+    name: "General",
+    category: "general",
+    icon: "/icons/general.svg",
+    width: 20,
+    height: 20,
+  },
+  {
+    name: "Business",
+    category: "business",
+    icon: "/icons/business.svg",
+    width: 20,
+    height: 18,
+  },
+  {
+    name: "Health",
+    category: "health",
+    icon: "/icons/health.svg",
+    width: 20,
+    height: 20,
+  },
+  {
+    name: "Science",
+    category: "science",
+    icon: "/icons/science.svg",
+    width: 17,
+    height: 20,
+  },
+  {
+    name: "Sports",
+    category: "sports",
+    icon: "/icons/sports.svg",
+    width: 20,
+    height: 20,
+  },
+  {
+    name: "Technology",
+    category: "technology",
+    icon: "/icons/technology.svg",
+    width: 20,
+    height: 20,
+  },
+];

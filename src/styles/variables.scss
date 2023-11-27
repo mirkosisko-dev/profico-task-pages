@@ -1,0 +1,32 @@
+// Colors
+$white: #fff;
+$offWhite: #c8cad1;
+$black: #000;
+$gray: #979797;
+$darkGrey: #a5a5a4;
+$dark: #1d1d1b;
+$darkOrange: #bb1e1e;
+$darkerOrange: #b21919;
+$evenDarkerOrange: #961818;
+$blue: #1e71bb;
+$background: #f4f5f8;
+
+// Gradients
+$main-gradient: linear-gradient(
+  180deg,
+  $darkerOrange 71.29%,
+  $darkerOrange 99.95%
+);
+
+// Breakpoints
+$mobile: 355px;
+$tablet: 769px;
+$desktop: 1028px;
+$xl-desktop: 1720px;
+
+$breakpoints: (
+  $mobile: $mobile,
+  $tablet: $tablet,
+  $desktop: $desktop,
+  $xl-desktop: $xl-desktop,
+);
