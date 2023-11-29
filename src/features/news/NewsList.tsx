@@ -12,9 +12,9 @@ interface INewsListProps {
 
 const NewsList: FC<INewsListProps> = ({ news }) => {
   return (
-    <div>
+    <div className={styles.container}>
       {news.map((article) => (
-        <NewsCard key={article.url} article={article} />
+        <NewsCard key={article.url} article={article} className={styles.col} />
       ))}
     </div>
   );

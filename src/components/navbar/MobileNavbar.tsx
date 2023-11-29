@@ -4,7 +4,6 @@ import Image from "next/image";
 import clsx from "clsx";
 
 import useQueryParams from "@/hooks/useQueryParams";
-import useGetNews from "@/hooks/useGetNews";
 
 import { FC, useState } from "react";
 import { navLinks } from "./constants";
