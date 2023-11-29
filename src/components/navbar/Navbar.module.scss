@@ -1,5 +1,7 @@
 @import "@/styles/variables";
+@import "@/styles/mixins/media";
 
+// Base styles for navLinks
 .navLinks {
   display: flex;
   flex-direction: column;
@@ -10,16 +12,12 @@
     height: 63px;
     flex-shrink: 0;
     border-radius: 5px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     gap: 4px;
-
     transition: all 0.3s ease-in-out;
-
     cursor: pointer;
 
     &.activeLink {

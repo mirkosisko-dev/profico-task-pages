@@ -1,6 +1,3 @@
-"use client";
-
-import Image from "next/image";
 import clsx from "clsx";
 
 import useQueryParams from "@/hooks/useQueryParams";
@@ -34,13 +31,7 @@ const Navbar: FC<INavbarProps> = ({ activeCategory, setActiveCategory }) => {
               setQueryParams({ category: category.category });
             }}
           >
-            <Image
-              alt={`${category.category} icon`}
-              src={category.icon}
-              height={category.height}
-              width={category.width}
-              className={styles.icon}
-            />
+            {category.icon}
             <span>{category.name}</span>
           </li>
         ))}

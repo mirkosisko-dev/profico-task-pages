@@ -6,14 +6,11 @@
 
   display: grid;
   grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: 1fr;
   justify-items: center;
-  gap: 10px;
+  gap: 22px;
 
   @include media($tablet) {
     grid-template-columns: repeat(3, 1fr);
-  }
-
-  .col {
-    background-color: tomato;
   }
 }

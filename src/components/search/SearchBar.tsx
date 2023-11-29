@@ -46,7 +46,7 @@ const SearchBar: FC<ISearchBarProps> = ({}) => {
       />
 
       <button className={clsx("hideOnMobile", styles.button)} onClick={onClick}>
-        Search
+        <p className={styles.btn}>Search</p>
       </button>
     </div>
   );

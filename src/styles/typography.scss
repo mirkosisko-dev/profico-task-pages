@@ -1,7 +1,29 @@
 @import "./variables";
 
+@font-face {
+  font-family: "Inter Bold";
+  src: url("/fonts/Inter-Bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter Medium";
+  src: url("/fonts/Inter-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter Semi";
+  src: url("/fonts/Inter-SemiBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterV";
+  src: url("/fonts/InterVariable.woff2") format("woff2");
+}
+
 html,
 body {
+  font-family: "Inter Medium";
   color: $black;
   font-size: 16px;
   font-style: normal;
@@ -11,6 +33,7 @@ body {
 }
 
 h1 {
+  font-family: "Inter";
   font-size: 32px;
   font-style: normal;
   font-weight: 900;
@@ -35,7 +58,8 @@ h3 {
 }
 
 input {
-  color: #1d1d1b;
+  font-family: "InterV";
+  color: $dark;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
@@ -43,7 +67,7 @@ input {
 }
 
 .label {
-  color: #1e71bb;
+  color: $blue;
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
@@ -53,7 +77,8 @@ input {
 }
 
 .author {
-  color: #1d1d1b;
+  font-family: "InterV";
+  color: $dark;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;

@@ -14,7 +14,7 @@ const NewsList: FC<INewsListProps> = ({ news }) => {
   return (
     <div className={styles.container}>
       {news.map((article) => (
-        <NewsCard key={article.url} article={article} className={styles.col} />
+        <NewsCard key={article.url} article={article} />
       ))}
     </div>
   );
