@@ -14,4 +14,14 @@ const getNews = async (
   }
 };
 
-export { getNews };
+const latestNews = async (): Promise<any> => {
+  const response = await axios.get("/api/latest");
+
+  if (response.status === 200) {
+    return response.data;
+  } else {
+    return response.data.error;
+  }
+};
+
+export { getNews, latestNews };

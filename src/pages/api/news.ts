@@ -1,8 +1,9 @@
+import { IArticle } from "@/shared/types";
 import axios from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 interface IResponse {
-  news?: any;
+  news?: IArticle[];
   error?: string;
 }
 

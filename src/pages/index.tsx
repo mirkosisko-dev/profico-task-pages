@@ -4,6 +4,7 @@ import useGetNews from "@/features/news/api/useGetNews";
 import useQueryParams from "@/hooks/useQueryParams";
 import NewsList from "@/features/news/NewsList";
 import { IArticle } from "@/shared/types";
+import LatestNews from "@/features/news/latestNews/LatestNews";
 
 export default function Home() {
   const { queryParams } = useQueryParams();
@@ -36,7 +37,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head> */}
 
-      <NewsList news={news as IArticle[]} />
+      {/* <NewsList news={news as IArticle[]} /> */}
+      <LatestNews />
     </>
   );
 }
