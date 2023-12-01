@@ -2,6 +2,7 @@
 @import "@/styles/mixins/media";
 
 .container {
+  position: relative;
   border-radius: 8px;
   background: $white;
   box-shadow: 0px 1px 2px -1px $offWhite;
@@ -10,6 +11,8 @@
   flex-direction: column;
 
   padding: 18px;
+
+  max-height: 550px;
 
   .title {
     font-family: "InterV";
@@ -22,53 +25,79 @@
     display: flex;
     align-items: center;
     gap: 10px;
+
+    margin-bottom: 14px;
   }
 
-  .articleContainer {
-    margin-top: 13px;
+  .content {
     display: flex;
     flex-direction: column;
-    gap: 14px;
 
-    .article {
-      font-family: "InterV";
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 20px; /* 125% */
-      letter-spacing: -0.11px;
+    gap: 13px;
+    max-height: 550px;
 
-      padding-bottom: 14px;
-      border-bottom: 1px solid $background;
+    overflow-y: scroll;
+
+    .articleContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+
+      .article {
+        font-family: "InterV";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px; /* 125% */
+        letter-spacing: -0.11px;
+
+        padding-bottom: 14px;
+        border-bottom: 1px solid $background;
+
+        .time {
+          font-weight: 700;
+        }
+      }
     }
   }
 
   .buttonContainer {
-    width: max-content;
+    height: 50px;
+
     margin-top: 14px;
+
+    background-color: $white;
+
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+
     display: flex;
     align-items: center;
-    gap: 2px;
 
-    cursor: pointer;
+    .wrapper {
+      display: flex;
+      align-items: center;
+      gap: 2px;
 
-    transition: all 0.3s ease-in-out;
+      cursor: pointer;
 
-    &:hover {
-      gap: 4px;
-    }
-
-    .button {
-      color: $blue;
-      font-family: "InterV";
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 20px; /* 142.857% */
-      letter-spacing: -0.096px;
+      transition: all 0.3s ease-in-out;
 
       &:hover {
-        color: $darkBlue;
+        gap: 4px;
+      }
+      .button {
+        color: $blue;
+        font-family: "InterV";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px; /* 142.857% */
+        letter-spacing: -0.096px;
+
+        &:hover {
+          color: $darkBlue;
+        }
       }
     }
   }

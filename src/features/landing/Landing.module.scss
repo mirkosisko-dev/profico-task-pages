@@ -1,0 +1,11 @@
+@import "@/styles/variables";
+@import "@/styles/mixins/media";
+
+.mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.desktop {
+}

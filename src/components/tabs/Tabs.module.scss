@@ -1,0 +1,31 @@
+@import "@/styles/variables";
+@import "@/styles/mixins/media";
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 17px;
+
+  font-family: "InterV";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 125% */
+  letter-spacing: -0.025px;
+
+  .tab {
+    cursor: pointer;
+
+    &:hover {
+      color: $darkOrange;
+    }
+
+    &.active {
+      color: $darkOrange;
+      padding: 10px 16px;
+      border-radius: 20px;
+      background: rgba(187, 30, 30, 0.1);
+    }
+  }
+}
