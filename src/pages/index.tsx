@@ -1,9 +1,9 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
-import useGetNews from "@/hooks/useGetNews";
-import useQueryParams from "@/hooks/useQueryParams";
 
-const inter = Inter({ subsets: ["latin"] });
+import useGetNews from "@/features/news/api/useGetNews";
+import useQueryParams from "@/hooks/useQueryParams";
+import NewsList from "@/features/news/NewsList";
+import { IArticle } from "@/shared/types";
 
 export default function Home() {
   const { queryParams } = useQueryParams();
@@ -16,13 +16,17 @@ export default function Home() {
     queryParams.get("category") as string
   );
 
-  if (isError || !news) return <div>Error!</div>;
+  // TODO: Add error component
+  if (isError) return <div>Error!</div>;
 
+  // TODO: Add skeletons
   if (isFetching) return <div>Loading...</div>;
+
+  if (typeof news === "string") return <div>No news bitch</div>;
 
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>ProfiNews</title>
         <meta
           name="description"
@@ -30,8 +34,9 @@ export default function Home() {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className={`${inter.className}`}>{news[0].title}</main>
+      </Head> */}
+
+      <NewsList news={news as IArticle[]} />
     </>
   );
 }

@@ -1,0 +1,65 @@
+@import "./variables";
+@import "./mixins/media";
+@import "./mixins/hide";
+
+@include normalize();
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: $background;
+
+  padding: 24px 16px;
+
+  @include media($tablet) {
+    padding: 60px 170px;
+  }
+}
+
+li,
+a {
+  list-style: none;
+  text-decoration: none;
+}
+
+input,
+input:focus {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+}
+
+button {
+  outline: none;
+  background: transparent;
+  border: none;
+
+  cursor: pointer;
+}
+
+.hideOnMobile {
+  @include hideOnMobile;
+}
+
+.hideOnMobileAndTablet {
+  @include hideOnMobileAndTablet;
+}
+
+.hideOnDesktop {
+  @include hideOnDesktop;
+}

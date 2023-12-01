@@ -1,6 +1,6 @@
 import { getNews } from "@/api/news";
-import { NEWS } from "@/shared";
 import { useQuery } from "@tanstack/react-query";
+import { NEWS } from "./queryKeys";
 
 const useGetNews = (q?: string, category?: string) => {
   return useQuery({

@@ -1,0 +1,16 @@
+@import "@/styles/variables";
+@import "@/styles/mixins/media";
+
+.container {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: 1fr;
+  justify-items: center;
+  gap: 22px;
+
+  @include media($tablet) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
