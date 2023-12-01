@@ -42,7 +42,8 @@
 
   /* Info Styles */
   .info {
-    height: 100%;
+    width: 100%;
+    height: 50%;
     padding: 12px;
     display: flex;
     flex-direction: column;
@@ -52,6 +53,7 @@
     .tagAndTitle {
       display: flex;
       flex-direction: column;
+      max-height: 30%;
     }
 
     /* Author Styles */
