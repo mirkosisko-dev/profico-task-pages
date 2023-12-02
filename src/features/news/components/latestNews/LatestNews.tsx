@@ -48,7 +48,7 @@ const LatestNews: FC<ILatestNewsProps> = () => {
       <div className={styles.content}>
         {latestNews?.pages.map((page, i) => (
           <div key={i} className={styles.articleContainer}>
-            {page.map((article: IArticle) => (
+            {page.news.map((article: IArticle) => (
               <div key={article.source.id} className={styles.article}>
                 <p className={clsx("label", styles.time)}>12:00</p>
                 <p>{article.title}</p>

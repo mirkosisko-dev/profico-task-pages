@@ -15,7 +15,6 @@ const useGetNews = (config: GetNewsConfig) =>
       }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages, lastPageParam) => {
-      console.log(lastPage, allPages, lastPageParam);
       if (lastPage.length === 0) {
         return undefined;
       }

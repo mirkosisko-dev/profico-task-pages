@@ -35,8 +35,6 @@ export default async function handler(
       page: req.query.page || 1,
     };
 
-    console.log({ params: req.query });
-
     if (req.query.category) {
       apiUrl = `${BASE_API_URL}/top-headlines?sortBy=publishedAt`;
 

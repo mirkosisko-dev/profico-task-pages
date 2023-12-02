@@ -14,6 +14,7 @@ import {
   parseAsString,
   useQueryStates,
 } from "next-usequerystate";
+import Button from "@/ui/button";
 
 interface ILandingProps {}
 
@@ -31,6 +32,8 @@ const Landing: FC<ILandingProps> = ({}) => {
     data: news,
     isError,
     isLoading,
+    isFetchingNextPage,
+    hasNextPage,
     fetchNextPage,
   } = useGetNews({
     params: {
@@ -44,26 +47,52 @@ const Landing: FC<ILandingProps> = ({}) => {
   // TODO: Add skeletons
   if (isLoading) return <div>Loading...</div>;
 
-  console.log("News", { news });
-
   return (
-    <>
+    <div className={styles.container}>
       <div className={clsx(styles.mobile, "hideOnDesktop")}>
         <Tabs currentTab={currentTab} setCurrentTab={setCurrentTab} />
         {currentTab === TABS.FEATURED ? (
-          news?.pages.map((page, index) => <NewsList key={index} news={page} />)
+          <div className={styles.center}>
+            {news?.pages.map((page, index) => (
+              <NewsList key={index} news={page} />
+            ))}
+            <Button
+              label={
+                isFetchingNextPage
+                  ? "Loading more..."
+                  : hasNextPage
+                  ? "Load more"
+                  : "Nothing more to load"
+              }
+              variant="transparent"
+              className={styles.button}
+              onClick={() => fetchNextPage()}
+            />
+          </div>
         ) : (
           <LatestNews />
         )}
       </div>
 
-      <div className={clsx(styles.desktop, "hideOnMobile")}>
+      <div className={clsx(styles.center, "hideOnMobile")}>
         {news?.pages.map((page, index) => (
           <NewsList key={index} news={page} />
         ))}
+
+        <Button
+          label={
+            isFetchingNextPage
+              ? "Loading more..."
+              : hasNextPage
+              ? "Load more"
+              : "Nothing more to load"
+          }
+          variant="transparent"
+          className={styles.button}
+          onClick={() => fetchNextPage()}
+        />
       </div>
-      <button onClick={() => fetchNextPage()}>Load more</button>
-    </>
+    </div>
   );
 };
 
