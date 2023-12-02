@@ -11,9 +11,11 @@
   "dependencies": {
     "@tanstack/react-query": "^5.8.7",
     "@tanstack/react-query-devtools": "^5.8.8",
+    "@vercel/postgres": "^0.5.1",
     "axios": "^1.6.2",
     "clsx": "^2.0.0",
     "next": "14.0.3",
+    "next-usequerystate": "^1.13.0",
     "normalize-scss": "^8.0.0",
     "react": "^18",
     "react-dom": "^18",

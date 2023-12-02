@@ -3,7 +3,13 @@ import Image from "next/image";
 
 import useQueryParams from "@/hooks/useQueryParams";
 
-import { ChangeEvent, FC, useCallback, useEffect } from "react";
+import {
+  ChangeEvent,
+  FC,
+  FormEventHandler,
+  useCallback,
+  useEffect,
+} from "react";
 
 import styles from "./SearchBar.module.scss";
 import React from "react";
@@ -25,7 +31,8 @@ const SearchBar: FC<ISearchBarProps> = ({}) => {
     setQ(e.target.value);
   }, []);
 
-  const onClick = () => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (!isMobile) setQueryParams({ q: debouncedQuery });
   };
 
@@ -36,19 +43,18 @@ const SearchBar: FC<ISearchBarProps> = ({}) => {
   }, [debouncedQuery, isMobile, setQueryParams]);
 
   return (
-    <div className={styles.container}>
+    <form onSubmit={onSubmit} className={styles.container}>
       <Image alt="search icon" src="/icons/search.svg" height={16} width={16} />
-
       <input
         onChange={handleOnChange}
         className={styles.input}
         placeholder="Search news"
       />
 
-      <button className={clsx("hideOnMobile", styles.button)} onClick={onClick}>
+      <button className={clsx("hideOnMobile", styles.button)}>
         <p className={styles.btn}>Search</p>
       </button>
-    </div>
+    </form>
   );
 };
 

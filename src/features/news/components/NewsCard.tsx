@@ -4,6 +4,7 @@ import { FC } from "react";
 import styles from "./NewsCard.module.scss";
 import clsx from "clsx";
 import Image from "next/image";
+import { truncate } from "@/helpers/truncate";
 
 interface INewsCardProps {
   article: IArticle;
@@ -30,7 +31,7 @@ const NewsCard: FC<INewsCardProps> = ({ article, className }) => {
         <div className={styles.tagAndTitle}>
           <div className={clsx("label", styles.tag)}>TAG</div>
 
-          <div className={styles.title}>{article.title}</div>
+          <div className={styles.title}>{truncate(article.title, 50)}</div>
         </div>
 
         <div className={clsx("author", "hideOnMobile", styles.author)}>

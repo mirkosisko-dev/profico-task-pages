@@ -32,14 +32,17 @@ export default async function handler(
     let queryParams: Record<string, any> = {
       apiKey: process.env.NEWS_API_KEY,
       pageSize: 15,
+      page: req.query.page || 1,
     };
+
+    console.log({ params: req.query });
 
     if (req.query.category) {
       apiUrl = `${BASE_API_URL}/top-headlines?sortBy=publishedAt`;
 
       queryParams.category = req.query.category;
     } else if (req.query.q) {
-      queryParams.q = req.query.q || "Elon";
+      queryParams.q = req.query.q || "Elon"; //must have something
     } else {
       apiUrl = `${BASE_API_URL}/top-headlines?sortBy=publishedAt&country=us`;
     }

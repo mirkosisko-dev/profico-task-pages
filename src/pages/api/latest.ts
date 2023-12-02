@@ -1,4 +1,3 @@
-import { IArticle, IData } from "@/shared/types";
 import axios from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -17,7 +16,8 @@ export default async function handler(
       {
         params: {
           apiKey: process.env.NEWS_API_KEY,
-          pageSize: 10,
+          pageSize: 15,
+          page: req.query.page || 1,
         },
       }
     );

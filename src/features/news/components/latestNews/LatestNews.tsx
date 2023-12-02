@@ -2,17 +2,23 @@ import React, { FC } from "react";
 import clsx from "clsx";
 import Pulse from "@/components/pulse";
 
-import useGetLatestNews from "../api/useGetLatestNews";
+import useGetLatestNews from "../../api/useGetLatestNews";
 
-import ChevronIcon from "../../../../public/icons/chevron.svg";
+import ChevronIcon from "../../../../../public/icons/chevron.svg";
 
 import { IArticle } from "@/shared/types";
 
 import styles from "./LatestNews.module.scss";
+import { parseAsInteger, useQueryStates } from "next-usequerystate";
 
 interface ILatestNewsProps {}
 
 const LatestNews: FC<ILatestNewsProps> = () => {
+  const [queryStates, updateQueryStates] = useQueryStates({
+    pageSize: parseAsInteger,
+    page: parseAsInteger,
+  });
+
   const {
     data: latestNews,
     error,
@@ -21,7 +27,13 @@ const LatestNews: FC<ILatestNewsProps> = () => {
     isFetching,
     isFetchingNextPage,
     status,
-  } = useGetLatestNews();
+  } = useGetLatestNews({
+    params: {
+      q: null,
+      category: null,
+      ...queryStates,
+    },
+  });
 
   if (status === "pending") return <p>Loading...</p>;
   if (status === "error") return <p>Error: {error.message}</p>;
@@ -34,9 +46,9 @@ const LatestNews: FC<ILatestNewsProps> = () => {
       </div>
 
       <div className={styles.content}>
-        {latestNews.pages.map((group, i) => (
+        {latestNews?.pages.map((page, i) => (
           <div key={i} className={styles.articleContainer}>
-            {group.news.map((article: IArticle) => (
+            {page.map((article: IArticle) => (
               <div key={article.source.id} className={styles.article}>
                 <p className={clsx("label", styles.time)}>12:00</p>
                 <p>{article.title}</p>
