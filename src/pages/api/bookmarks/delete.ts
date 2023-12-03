@@ -5,16 +5,16 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { user_id, author, title, image_url, article_id } = req.body;
+  const { article_id, user_id } = req.body;
 
   try {
     if (req.method !== "POST") throw new Error("Method not allowed");
 
-    if (!user_id || !title || !image_url || !article_id)
+    if (!article_id || !user_id)
       return res.status(400).json({ message: "Missing credentials" });
 
     const result =
-      await sql`INSERT INTO bookmarks (user_id, author, title, image_url, article_id) VALUES (${user_id}, ${author}, ${title}, ${image_url}, ${article_id})`;
+      await sql`DELETE FROM bookmarks WHERE article_id = ${article_id} AND user_id = ${user_id}`;
 
     if (result) return res.status(200).json(result);
   } catch (error: any) {

@@ -1,4 +1,3 @@
-import { IArticle } from "@/shared/types";
 import axios, { AxiosRequestConfig } from "axios";
 import { toast } from "react-toastify";
 
@@ -18,6 +17,7 @@ const getNews = async (config: GetNewsConfig) => {
     return response.data;
   } catch (error: any) {
     toast.error(error.message);
+    throw error;
   }
 };
 
@@ -27,6 +27,7 @@ const latestNews = async (config: GetNewsConfig) => {
     return response.data;
   } catch (error: any) {
     toast.error(error.message);
+    throw error;
   }
 };
 

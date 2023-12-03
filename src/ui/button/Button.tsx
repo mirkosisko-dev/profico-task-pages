@@ -1,11 +1,12 @@
 import clsx from "clsx";
+
 import { FC } from "react";
 
 import styles from "./Button.module.scss";
 
 interface IButtonProps {
   label: string;
-  onClick: () => void;
+  onClick?: () => void;
   disabled?: boolean;
   className?: string;
   variant?: "primary" | "secondary" | "transparent";

@@ -1,10 +1,10 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { NEWS } from "./queryKeys";
-import { GetNewsConfig, getNews } from "./getNews";
+import { NEWS } from "../api/queryKeys";
+import { GetNewsConfig, getNews } from "../api/getNews";
 
 const useGetNews = (config: GetNewsConfig) =>
   useInfiniteQuery({
-    queryKey: [NEWS],
+    queryKey: [NEWS, config.params.category, config.params.q],
     queryFn: (props) =>
       getNews({
         ...config,

@@ -21,6 +21,8 @@
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 
+  position: relative;
+
   &:hover {
     transform: scale(1.02);
   }

@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { LATEST_NEWS } from "./queryKeys";
-import { GetNewsConfig, latestNews } from "./getNews";
+import { LATEST_NEWS } from "../api/queryKeys";
+import { GetNewsConfig, latestNews } from "../api/getNews";
 
 const useGetLatestNews = (config: GetNewsConfig) =>
   useInfiniteQuery({

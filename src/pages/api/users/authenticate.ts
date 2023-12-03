@@ -19,7 +19,9 @@ export default async function handler(
     if (!result.rows.length) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
-    return res.status(200).json(result.rows[0]?.email);
+    return res
+      .status(200)
+      .json({ id: result.rows[0]?.id, email: result.rows[0]?.email });
   } catch (error: any) {
     return res.status(500).json({ error: error?.message });
   }
