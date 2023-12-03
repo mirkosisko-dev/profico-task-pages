@@ -20,6 +20,8 @@ import { BookmarkList } from "../bookmark/components";
 
 import styles from "./Landing.module.scss";
 import Skeleton from "@/components/skeleton";
+import Error from "@/components/error";
+import ErrorEmptyHandler from "@/components/error";
 
 interface ILandingProps {}
 
@@ -55,10 +57,11 @@ const Landing: FC<ILandingProps> = ({}) => {
     if (!authenticated) router.push("/");
   }, [authenticated, router]);
 
-  // TODO: Add error component
-  if (isError) return <div>Error!</div>;
+  if (isError) return <ErrorEmptyHandler text="Oops! Something went wrong." />;
 
   if (isLoading) return <Skeleton array={[1, 2, 3, 4, 5, 6]} />;
+
+  if (!news) return <ErrorEmptyHandler text="Nothing to see here." />;
 
   const renderTab = () => {
     switch (currentTab) {

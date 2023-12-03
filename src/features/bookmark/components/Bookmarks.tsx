@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 
 import styles from "@/features/landing/Landing.module.scss";
 import Skeleton from "@/components/skeleton";
+import ErrorEmptyHandler from "@/components/error";
 
 interface IBookmarksProps {}
 
@@ -20,12 +21,11 @@ const Bookmarks: FC<IBookmarksProps> = ({}) => {
     if (!authenticated) router.push("/");
   }, [authenticated, router]);
 
-  // TODO: Add error component
-  if (isError) return <div>Error!</div>;
+  if (isError) return <ErrorEmptyHandler text="Oops! Something went wrong." />;
 
   if (isLoading) return <Skeleton array={[1, 2, 3, 4, 5, 6]} />;
 
-  if (!bookmarks) return <div>Nothing to see here</div>;
+  if (!bookmarks) return <ErrorEmptyHandler text="Nothing to see here." />;
 
   return (
     <div className={styles.container}>

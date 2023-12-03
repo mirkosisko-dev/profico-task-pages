@@ -32,7 +32,6 @@ const Layout: FC<ILayoutProps> = ({ children, isLanding }) => {
         />
         {children}
       </main>
-      {/* <Footer /> */}
     </div>
   );
 };
