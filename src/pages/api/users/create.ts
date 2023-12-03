@@ -16,7 +16,15 @@ export default async function handler(
     const result =
       await sql`INSERT INTO users (email, password) VALUES (${email}, ${password})`;
 
-    if (result) return res.status(200).json(result);
+    if (result) {
+      const user =
+        await sql`SELECT * FROM users WHERE email = ${email} AND password = ${password}`;
+
+      if (user)
+        return res
+          .status(200)
+          .json({ id: user.rows[0]?.id, email: user.rows[0]?.email });
+    }
   } catch (error: any) {
     return res.status(500).json({ error: error?.message });
   }

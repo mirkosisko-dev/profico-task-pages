@@ -17,12 +17,11 @@
 
   .skeleton {
     width: 100%;
-    min-width: 300px;
+    min-width: 200px;
     height: 100%;
     min-height: 300px;
     background-color: $skeletonBackground;
     border-radius: 8px;
-    position: relative;
     overflow: hidden;
 
     @include media($tablet) {

@@ -26,7 +26,7 @@ const BookmarkIcon: FC<IBookmarkProps> = ({
   author,
   articleId,
 }) => {
-  const { user } = useAuthState();
+  const { user, authenticated } = useAuthState();
   const { mutateAsync: createBookmark } = useCreateBookmark(() => {
     toast.success("Bookmarked");
   });
@@ -34,6 +34,10 @@ const BookmarkIcon: FC<IBookmarkProps> = ({
     toast.success("Bookmark deleted");
   });
   const onClick = async () => {
+    if (!authenticated) {
+      toast.error("You need to be logged in to do that.");
+      return;
+    }
     if (isBookmarked) await deleteBookmark({ article_id: articleId });
     else
       await createBookmark({

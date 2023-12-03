@@ -1,9 +1,9 @@
 import clsx from "clsx";
+import Link from "next/link";
 
 import { FC } from "react";
 import { navLinks } from "./constants";
 import { parseAsString, useQueryStates } from "next-usequerystate";
-import { useRouter } from "next/router";
 
 import styles from "./DesktopNavbar.module.scss";
 
@@ -18,30 +18,30 @@ const Navbar: FC<INavbarProps> = ({ activeCategory, setActiveCategory }) => {
     category: parseAsString,
   });
 
-  const { push, pathname } = useRouter();
-
-  const pushToLanding = () => {
-    if (!pathname.includes("/landing")) push("/landing");
-  };
-
   return (
     <nav className="hideOnMobile">
       <ul className={styles.navLinks}>
         {navLinks.map((category) => (
-          <li
+          <Link
             key={category.category}
-            className={clsx(styles.navLink, {
-              [styles.activeLink]: activeCategory === category.category,
-            })}
+            href={{
+              pathname: "/",
+              query: { ...queryStates },
+            }}
             onClick={() => {
               setActiveCategory(category.category);
-              pushToLanding();
               updateQueryStates({ category: category.category, q: null });
             }}
           >
-            {category.icon}
-            <span>{category.name}</span>
-          </li>
+            <li
+              className={clsx(styles.navLink, {
+                [styles.activeLink]: activeCategory === category.category,
+              })}
+            >
+              {category.icon}
+              <span>{category.name}</span>
+            </li>
+          </Link>
         ))}
       </ul>
     </nav>

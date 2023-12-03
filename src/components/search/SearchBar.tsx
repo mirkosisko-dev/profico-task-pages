@@ -8,10 +8,10 @@ import { ChangeEvent, FC, useCallback, useEffect } from "react";
 import { useDebounce } from "@/hooks/useDebounce";
 import { parseAsString, useQueryStates } from "next-usequerystate";
 import { useRouter } from "next/router";
-
-import styles from "./SearchBar.module.scss";
 import { useTabsState } from "@/features/tabs/context/TabsContext";
 import { TABS } from "../tabs/constants";
+
+import styles from "./SearchBar.module.scss";
 
 interface ISearchBarProps {}
 
@@ -34,7 +34,7 @@ const SearchBar: FC<ISearchBarProps> = () => {
   }, []);
 
   const pushToLanding = () => {
-    if (!pathname.includes("/landing")) push("/landing");
+    push({ pathname: "/", query: { ...queryStates } });
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {

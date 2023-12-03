@@ -4,7 +4,10 @@ import Link from "next/link";
 import Button from "@/ui/button";
 
 import { FC } from "react";
-import { useAuthActions } from "@/features/auth/context/AuthContext";
+import {
+  useAuthActions,
+  useAuthState,
+} from "@/features/auth/context/AuthContext";
 
 import styles from "./Header.module.scss";
 
@@ -13,22 +16,26 @@ interface IHeaderProps {
 }
 
 const Header: FC<IHeaderProps> = ({ isLanding }) => {
+  const { authenticated } = useAuthState();
   const { logout } = useAuthActions();
   return (
     <div className={styles.container}>
       <Logo className="hideOnMobile" />
       <SearchBar />
-      <Link
-        href={isLanding ? "/bookmarks" : "/landing"}
-        className="hideOnMobile"
-      >
+      <Link href={isLanding ? "/bookmarks" : "/"} className="hideOnMobile">
         <Button
           label={isLanding ? "Bookmarks" : "Featured"}
           variant="secondary"
         />
       </Link>
 
-      <Button className={styles.logout} label="Logout" onClick={logout} />
+      {authenticated ? (
+        <Button className={styles.authBtn} label={"Logout"} onClick={logout} />
+      ) : (
+        <Link href="/auth">
+          <Button className={styles.authBtn} label={"Login"} />
+        </Link>
+      )}
     </div>
   );
 };

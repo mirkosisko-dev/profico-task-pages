@@ -13,10 +13,8 @@ import {
   parseAsString,
   useQueryStates,
 } from "next-usequerystate";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { TABS } from "@/components/tabs/constants";
-import { useAuthState } from "../auth/context/AuthContext";
-import { useRouter } from "next/router";
 import { useTabsState } from "../tabs/context/TabsContext";
 
 import styles from "./Landing.module.scss";
@@ -25,9 +23,7 @@ interface ILandingProps {}
 
 const Landing: FC<ILandingProps> = ({}) => {
   const isMobile = useIsMobile();
-  const router = useRouter();
 
-  const { authenticated } = useAuthState();
   const { currentTab } = useTabsState();
 
   const [queryStates, updateQueryStates] = useQueryStates({
@@ -83,10 +79,6 @@ const Landing: FC<ILandingProps> = ({}) => {
         />
       );
   };
-
-  useEffect(() => {
-    if (!authenticated) router.push("/");
-  }, [authenticated, router]);
 
   if (isError) return <ErrorEmptyHandler text="Oops! Something went wrong." />;
 
