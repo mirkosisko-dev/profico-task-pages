@@ -15,8 +15,6 @@ const Layout: FC<ILayoutProps> = ({ children, isLanding }) => {
 
   const { isConnecting } = useAuthState();
 
-  console.log({ isConnecting });
-
   if (isConnecting) return <div>Connecting...</div>;
 
   return (
