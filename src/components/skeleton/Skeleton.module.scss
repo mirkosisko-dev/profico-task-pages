@@ -1,0 +1,86 @@
+@import "@/styles/variables";
+@import "@/styles/mixins/media";
+
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: 1fr;
+  justify-items: center;
+  gap: 22px;
+
+  animation: scale 4s infinite;
+
+  @include media($tablet) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .skeleton {
+    min-width: 100%;
+    height: 100%;
+    min-height: 300px;
+    background-color: $skeletonBackground;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+
+    @include media($tablet) {
+      align-items: center;
+    }
+
+    .skeletonImage {
+      background-color: $skeletonContent;
+
+      @include media($tablet) {
+        min-height: 50%;
+      }
+    }
+
+    .skeletonInfo {
+      width: 100%;
+      height: 50%;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .skeletonTagAndTitle {
+        display: flex;
+        flex-direction: column;
+        max-height: 30%;
+
+        .skeletonTag {
+          width: 50%;
+          height: 12px;
+          background-color: $skeletonContent;
+          margin-bottom: 6px;
+
+          border-radius: 8px;
+        }
+
+        .skeletonTitle {
+          width: 100%;
+          height: 20px;
+          background-color: $skeletonContent;
+          border-radius: 8px;
+        }
+      }
+
+      .skeletonAuthor {
+        width: 30%;
+        height: 12px;
+        background-color: $skeletonContent;
+        border-radius: 8px;
+      }
+    }
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
