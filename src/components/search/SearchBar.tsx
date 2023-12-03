@@ -1,46 +1,54 @@
 import clsx from "clsx";
 import Image from "next/image";
+import React from "react";
 
-import useQueryParams from "@/hooks/useQueryParams";
+import useIsMobile from "@/hooks/useIsMobile";
 
-import {
-  ChangeEvent,
-  FC,
-  FormEventHandler,
-  useCallback,
-  useEffect,
-} from "react";
+import { ChangeEvent, FC, useCallback, useEffect } from "react";
+import { useDebounce } from "@/hooks/useDebounce";
+import { parseAsString, useQueryStates } from "next-usequerystate";
+import { useRouter } from "next/router";
 
 import styles from "./SearchBar.module.scss";
-import React from "react";
-import { useDebounce } from "@/hooks/useDebounce";
-import useIsMobile from "@/hooks/useIsMobile";
+import { useTabsState } from "@/features/tabs/context/TabsContext";
+import { TABS } from "../tabs/constants";
 
 interface ISearchBarProps {}
 
-const SearchBar: FC<ISearchBarProps> = ({}) => {
+const SearchBar: FC<ISearchBarProps> = () => {
   const [q, setQ] = React.useState<string | undefined>();
 
-  const { setQueryParams } = useQueryParams<{
-    q: string;
-  }>();
+  const [queryStates, updateQueryStates] = useQueryStates({
+    q: parseAsString,
+    category: parseAsString,
+  });
+
   const isMobile = useIsMobile();
   const debouncedQuery = useDebounce(q, 400);
+
+  const { push, pathname } = useRouter();
+  const { setCurrentTab } = useTabsState();
 
   const handleOnChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setQ(e.target.value);
   }, []);
 
+  const pushToLanding = () => {
+    if (!pathname.includes("/landing")) push("/landing");
+  };
+
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!isMobile) setQueryParams({ q: debouncedQuery });
+    pushToLanding();
+    if (!isMobile) updateQueryStates({ q: debouncedQuery, category: null });
   };
 
   useEffect(() => {
     if (debouncedQuery && isMobile) {
-      setQueryParams({ q: debouncedQuery });
+      setCurrentTab(TABS.FEATURED);
+      updateQueryStates({ q: debouncedQuery, category: null });
     }
-  }, [debouncedQuery, isMobile, setQueryParams]);
+  }, [debouncedQuery, isMobile, setCurrentTab]);
 
   return (
     <form onSubmit={onSubmit} className={styles.container}>

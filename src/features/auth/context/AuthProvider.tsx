@@ -6,6 +6,7 @@ import { ActionType, IAuthProviderProps } from "./types";
 import { IUser } from "@/features/user/types";
 import {
   getStoredUserFromLS,
+  removeUserFromLS,
   storeUserToLS,
 } from "@/features/user/services/localStorage";
 
@@ -52,6 +53,7 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
   };
 
   const logout = async () => {
+    removeUserFromLS();
     dispatch({ type: ActionType.LOGOUT });
   };
 

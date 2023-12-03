@@ -1,10 +1,14 @@
 import { IUser } from "../types";
 
-export function getStoredUserFromLS(): IUser | null {
+export const getStoredUserFromLS = (): IUser | null => {
   const storedUser = localStorage.getItem("user");
   return storedUser ? JSON.parse(storedUser) : null;
-}
+};
 
-export function storeUserToLS(user: IUser) {
+export const storeUserToLS = (user: IUser) => {
   localStorage.setItem("user", JSON.stringify(user));
-}
+};
+
+export const removeUserFromLS = () => {
+  localStorage.removeItem("user");
+};

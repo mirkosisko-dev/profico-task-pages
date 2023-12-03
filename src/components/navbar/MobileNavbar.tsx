@@ -1,13 +1,13 @@
 import Image from "next/image";
 import clsx from "clsx";
-
-import useQueryParams from "@/hooks/useQueryParams";
-
-import { FC, useState } from "react";
-
 import Logo from "../logo";
 import SearchBar from "../search";
+
+import { FC, useState } from "react";
 import { navLinks } from "./constants";
+import { parseAsString, useQueryStates } from "next-usequerystate";
+import { useTabsState } from "@/features/tabs/context/TabsContext";
+import { TABS } from "../tabs/constants";
 
 import styles from "./MobileNavbar.module.scss";
 
@@ -21,9 +21,12 @@ const Navbar: FC<INavbarProps> = ({ activeCategory, setActiveCategory }) => {
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 
-  const { setQueryParams } = useQueryParams<{
-    category: string;
-  }>();
+  const { setCurrentTab } = useTabsState();
+
+  const [queryStates, updateQueryStates] = useQueryStates({
+    q: parseAsString,
+    category: parseAsString,
+  });
 
   return (
     <nav className={clsx(styles.container, "hideOnDesktop")}>
@@ -66,7 +69,8 @@ const Navbar: FC<INavbarProps> = ({ activeCategory, setActiveCategory }) => {
                 })}
                 onClick={() => {
                   setActiveCategory(category.category);
-                  setQueryParams({ category: category.category });
+                  setCurrentTab(TABS.FEATURED);
+                  updateQueryStates({ category: category.category, q: null });
                   toggleMenu();
                 }}
               >

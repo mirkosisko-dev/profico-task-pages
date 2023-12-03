@@ -15,6 +15,7 @@ export const authReducer = (
     case ActionType.LOGOUT:
       return {
         ...state,
+        user: null,
         authenticated: false,
       };
     case ActionType.LOAD_USER:
