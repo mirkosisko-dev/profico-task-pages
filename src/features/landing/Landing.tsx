@@ -13,22 +13,22 @@ import {
   parseAsString,
   useQueryStates,
 } from "next-usequerystate";
-import { FC, useEffect, useState } from "react";
-import { TABS, tabs } from "@/components/tabs/constants";
+import { FC, useEffect } from "react";
+import { TABS } from "@/components/tabs/constants";
 import { useAuthState } from "../auth/context/AuthContext";
 import { useRouter } from "next/router";
+import { useTabsState } from "../tabs/context/TabsContext";
 
 import styles from "./Landing.module.scss";
 
 interface ILandingProps {}
 
 const Landing: FC<ILandingProps> = ({}) => {
-  const [currentTab, setCurrentTab] = useState(tabs[0].id);
-
+  const isMobile = useIsMobile();
   const router = useRouter();
 
   const { authenticated } = useAuthState();
-  const isMobile = useIsMobile();
+  const { currentTab } = useTabsState();
 
   const [queryStates, updateQueryStates] = useQueryStates({
     q: parseAsString,
@@ -52,8 +52,23 @@ const Landing: FC<ILandingProps> = ({}) => {
   const { data: bookmarks } = useGetBookmarks();
 
   const renderLoadMoreButton = () => {
-    return isMobile ? (
-      currentTab === TABS.FEATURED && (
+    if (news?.pages[0].length !== 0)
+      return isMobile ? (
+        currentTab === TABS.FEATURED && (
+          <Button
+            label={
+              isFetchingNextPage
+                ? "Loading more..."
+                : hasNextPage
+                ? "Load more"
+                : "Nothing more to load"
+            }
+            variant="transparent"
+            className={styles.button}
+            onClick={() => fetchNextPage()}
+          />
+        )
+      ) : (
         <Button
           label={
             isFetchingNextPage
@@ -66,21 +81,7 @@ const Landing: FC<ILandingProps> = ({}) => {
           className={styles.button}
           onClick={() => fetchNextPage()}
         />
-      )
-    ) : (
-      <Button
-        label={
-          isFetchingNextPage
-            ? "Loading more..."
-            : hasNextPage
-            ? "Load more"
-            : "Nothing more to load"
-        }
-        variant="transparent"
-        className={styles.button}
-        onClick={() => fetchNextPage()}
-      />
-    );
+      );
   };
 
   useEffect(() => {
@@ -91,17 +92,9 @@ const Landing: FC<ILandingProps> = ({}) => {
 
   if (isLoading) return <Skeleton array={[1, 2, 3, 4, 5, 6]} />;
 
-  if (news?.pages[0].length === 0)
-    return <ErrorEmptyHandler text="Nothing to see here." />;
-
   return (
     <div className={styles.container}>
-      <MobileLanding
-        news={news}
-        bookmarks={bookmarks!}
-        currentTab={currentTab}
-        setCurrentTab={setCurrentTab}
-      />
+      <MobileLanding news={news} bookmarks={bookmarks!} />
 
       <DesktopLanding news={news} />
 

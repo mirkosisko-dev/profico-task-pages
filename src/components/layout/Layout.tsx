@@ -1,6 +1,8 @@
-import { FC, useState } from "react";
 import Header from "../header";
+import Tabs from "../tabs";
 import DividerLine from "../dividerLine";
+
+import { FC, useState } from "react";
 import { MobileNavbar, DesktopNavbar } from "../navbar";
 import { navLinks } from "../navbar/constants";
 import { useAuthState } from "@/features/auth/context/AuthContext";
@@ -30,6 +32,7 @@ const Layout: FC<ILayoutProps> = ({ children, isLanding }) => {
           activeCategory={activeCategory}
           setActiveCategory={setActiveCategory}
         />
+        <Tabs />
         {children}
       </main>
     </div>

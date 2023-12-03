@@ -8,22 +8,25 @@ import { FC } from "react";
 import { BookmarkList } from "../bookmark/components";
 import { InfiniteData } from "@tanstack/react-query";
 import { IBookmark } from "../bookmark/types";
+import { useTabsState } from "../tabs/context/TabsContext";
 
 import styles from "./Landing.module.scss";
+import ErrorEmptyHandler from "@/components/error";
 
 interface IMobileLandingProps {
-  currentTab: TABS;
   news: InfiniteData<any, unknown> | undefined;
   bookmarks: IBookmark[];
-  setCurrentTab: (tab: TABS) => void;
 }
 
-const MobileLanding: FC<IMobileLandingProps> = ({
-  currentTab,
-  news,
-  bookmarks,
-  setCurrentTab,
-}) => {
+const MobileLanding: FC<IMobileLandingProps> = ({ news, bookmarks }) => {
+  const { currentTab } = useTabsState();
+
+  if (news?.pages[0].length === 0 && currentTab === TABS.FEATURED)
+    return <ErrorEmptyHandler text="Nothing to see here." />;
+
+  if (bookmarks.length === 0 && currentTab === TABS.BOOKMARKS)
+    return <ErrorEmptyHandler text="Nothing to see here." />;
+
   const renderTab = () => {
     switch (currentTab) {
       case TABS.FEATURED:
@@ -42,10 +45,7 @@ const MobileLanding: FC<IMobileLandingProps> = ({
   };
 
   return (
-    <div className={clsx(styles.mobile, "hideOnDesktop")}>
-      <Tabs currentTab={currentTab} setCurrentTab={setCurrentTab} />
-      {renderTab()}
-    </div>
+    <div className={clsx(styles.mobile, "hideOnDesktop")}>{renderTab()}</div>
   );
 };
 

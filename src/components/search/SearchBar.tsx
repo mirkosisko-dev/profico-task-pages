@@ -10,6 +10,8 @@ import { parseAsString, useQueryStates } from "next-usequerystate";
 import { useRouter } from "next/router";
 
 import styles from "./SearchBar.module.scss";
+import { useTabsState } from "@/features/tabs/context/TabsContext";
+import { TABS } from "../tabs/constants";
 
 interface ISearchBarProps {}
 
@@ -23,7 +25,9 @@ const SearchBar: FC<ISearchBarProps> = () => {
 
   const isMobile = useIsMobile();
   const debouncedQuery = useDebounce(q, 400);
+
   const { push, pathname } = useRouter();
+  const { setCurrentTab } = useTabsState();
 
   const handleOnChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setQ(e.target.value);
@@ -41,9 +45,10 @@ const SearchBar: FC<ISearchBarProps> = () => {
 
   useEffect(() => {
     if (debouncedQuery && isMobile) {
+      setCurrentTab(TABS.FEATURED);
       updateQueryStates({ q: debouncedQuery, category: null });
     }
-  }, [debouncedQuery, isMobile]);
+  }, [debouncedQuery, isMobile, setCurrentTab]);
 
   return (
     <form onSubmit={onSubmit} className={styles.container}>

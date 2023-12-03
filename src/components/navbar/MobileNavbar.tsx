@@ -6,7 +6,8 @@ import SearchBar from "../search";
 import { FC, useState } from "react";
 import { navLinks } from "./constants";
 import { parseAsString, useQueryStates } from "next-usequerystate";
-import { useRouter } from "next/router";
+import { useTabsState } from "@/features/tabs/context/TabsContext";
+import { TABS } from "../tabs/constants";
 
 import styles from "./MobileNavbar.module.scss";
 
@@ -20,16 +21,12 @@ const Navbar: FC<INavbarProps> = ({ activeCategory, setActiveCategory }) => {
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 
+  const { setCurrentTab } = useTabsState();
+
   const [queryStates, updateQueryStates] = useQueryStates({
     q: parseAsString,
     category: parseAsString,
   });
-
-  const { push, pathname } = useRouter();
-
-  const pushToLanding = () => {
-    if (!pathname.includes("/landing")) push("/landing");
-  };
 
   return (
     <nav className={clsx(styles.container, "hideOnDesktop")}>
@@ -72,7 +69,7 @@ const Navbar: FC<INavbarProps> = ({ activeCategory, setActiveCategory }) => {
                 })}
                 onClick={() => {
                   setActiveCategory(category.category);
-                  pushToLanding();
+                  setCurrentTab(TABS.FEATURED);
                   updateQueryStates({ category: category.category, q: null });
                   toggleMenu();
                 }}

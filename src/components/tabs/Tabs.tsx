@@ -1,16 +1,15 @@
 import clsx from "clsx";
 
 import { FC } from "react";
-import { TABS, tabs } from "./constants";
+import { useTabsState } from "@/features/tabs/context/TabsContext";
+import { tabs } from "./constants";
 
 import styles from "./Tabs.module.scss";
 
-interface ITabsProps {
-  currentTab: string;
-  setCurrentTab: (tab: TABS) => void;
-}
+interface ITabsProps {}
 
-const Tabs: FC<ITabsProps> = ({ currentTab, setCurrentTab }) => {
+const Tabs: FC<ITabsProps> = () => {
+  const { currentTab, setCurrentTab } = useTabsState();
   return (
     <div className={clsx(styles.container, "hideOnDesktop")}>
       {tabs.map((tab) => (

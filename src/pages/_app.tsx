@@ -1,4 +1,5 @@
 import AuthProvider from "@/features/auth/context/AuthProvider";
+import TabsProvider from "@/features/tabs/context/TabsProvider";
 
 import type { AppProps } from "next/app";
 
@@ -22,7 +23,9 @@ export default function App({ Component, pageProps }: AppProps) {
         pauseOnHover
       />
       <AuthProvider>
-        <Component {...pageProps} />
+        <TabsProvider>
+          <Component {...pageProps} />
+        </TabsProvider>
       </AuthProvider>
     </QueryClientProvider>
   );

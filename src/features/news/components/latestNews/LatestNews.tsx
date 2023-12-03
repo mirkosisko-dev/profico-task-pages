@@ -23,7 +23,6 @@ const LatestNews: FC<ILatestNewsProps> = () => {
 
   const {
     data: latestNews,
-    error,
     fetchNextPage,
     hasNextPage,
     isFetching,
