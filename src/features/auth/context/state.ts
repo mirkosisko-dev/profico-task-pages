@@ -3,7 +3,7 @@ import { IAuthActions, IAuthState } from "./types";
 export const initialState: IAuthState = {
   user: null,
   authenticated: false,
-  isConnecting: false,
+  isConnecting: true,
 };
 
 export const initialActions: IAuthActions = {

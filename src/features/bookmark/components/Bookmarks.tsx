@@ -6,6 +6,7 @@ import { useAuthState } from "@/features/auth/context/AuthContext";
 import { useRouter } from "next/router";
 
 import styles from "@/features/landing/Landing.module.scss";
+import Skeleton from "@/components/skeleton";
 
 interface IBookmarksProps {}
 
@@ -22,8 +23,7 @@ const Bookmarks: FC<IBookmarksProps> = ({}) => {
   // TODO: Add error component
   if (isError) return <div>Error!</div>;
 
-  // TODO: Add skeletons
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Skeleton array={[1, 2, 3, 4, 5, 6]} />;
 
   if (!bookmarks) return <div>Nothing to see here</div>;
 

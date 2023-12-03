@@ -19,6 +19,7 @@ import { useRouter } from "next/router";
 import { BookmarkList } from "../bookmark/components";
 
 import styles from "./Landing.module.scss";
+import Skeleton from "@/components/skeleton";
 
 interface ILandingProps {}
 
@@ -57,8 +58,7 @@ const Landing: FC<ILandingProps> = ({}) => {
   // TODO: Add error component
   if (isError) return <div>Error!</div>;
 
-  // TODO: Add skeletons
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Skeleton array={[1, 2, 3, 4, 5, 6]} />;
 
   const renderTab = () => {
     switch (currentTab) {

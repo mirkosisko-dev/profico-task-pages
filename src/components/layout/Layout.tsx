@@ -3,6 +3,7 @@ import Header from "../header";
 import DividerLine from "../dividerLine";
 import { MobileNavbar, DesktopNavbar } from "../navbar";
 import { navLinks } from "../navbar/constants";
+import { useAuthState } from "@/features/auth/context/AuthContext";
 
 interface ILayoutProps {
   children: React.ReactNode;
@@ -11,6 +12,10 @@ interface ILayoutProps {
 
 const Layout: FC<ILayoutProps> = ({ children, isLanding }) => {
   const [activeCategory, setActiveCategory] = useState(navLinks[0].category);
+
+  const { isConnecting } = useAuthState();
+
+  if (isConnecting) return <div>Connecting...</div>;
 
   return (
     <div className="layout">
