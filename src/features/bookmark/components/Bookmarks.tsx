@@ -25,7 +25,8 @@ const Bookmarks: FC<IBookmarksProps> = ({}) => {
 
   if (isLoading) return <Skeleton array={[1, 2, 3, 4, 5, 6]} />;
 
-  if (!bookmarks) return <ErrorEmptyHandler text="Nothing to see here." />;
+  if (bookmarks?.length === 0)
+    return <ErrorEmptyHandler text="Nothing to see here." />;
 
   return (
     <div className={styles.container}>

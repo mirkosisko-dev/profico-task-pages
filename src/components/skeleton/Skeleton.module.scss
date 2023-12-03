@@ -30,6 +30,7 @@
 
     .skeletonImage {
       background-color: $skeletonContent;
+      min-height: 200px;
 
       @include media($tablet) {
         min-height: 50%;
@@ -67,10 +68,12 @@
       }
 
       .skeletonAuthor {
-        width: 30%;
-        height: 12px;
-        background-color: $skeletonContent;
-        border-radius: 8px;
+        @include media($tablet) {
+          width: 30%;
+          height: 12px;
+          background-color: $skeletonContent;
+          border-radius: 8px;
+        }
       }
     }
   }

@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import clsx from "clsx";
 import Pulse from "@/components/pulse";
+import Skeleton from "@/components/skeleton";
+import ErrorEmptyHandler from "@/components/error";
 
 import useGetLatestNews from "../../hooks/useGetLatestNews";
 
@@ -35,8 +37,9 @@ const LatestNews: FC<ILatestNewsProps> = () => {
     },
   });
 
-  if (status === "pending") return <p>Loading...</p>;
-  if (status === "error") return <p>Error: {error.message}</p>;
+  if (status === "pending") return <Skeleton array={[1]} />;
+  if (status === "error")
+    return <ErrorEmptyHandler text="Nothing to see here." />;
 
   return (
     <div className={styles.container}>

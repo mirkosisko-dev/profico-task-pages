@@ -1,9 +1,9 @@
 import clsx from "clsx";
 
-import useQueryParams from "@/hooks/useQueryParams";
-
 import { FC } from "react";
 import { navLinks } from "./constants";
+import { parseAsString, useQueryStates } from "next-usequerystate";
+import { useRouter } from "next/router";
 
 import styles from "./DesktopNavbar.module.scss";
 
@@ -13,9 +13,16 @@ interface INavbarProps {
 }
 
 const Navbar: FC<INavbarProps> = ({ activeCategory, setActiveCategory }) => {
-  const { setQueryParams } = useQueryParams<{
-    category: string;
-  }>();
+  const [queryStates, updateQueryStates] = useQueryStates({
+    q: parseAsString,
+    category: parseAsString,
+  });
+
+  const { push, pathname } = useRouter();
+
+  const pushToLanding = () => {
+    if (!pathname.includes("/landing")) push("/landing");
+  };
 
   return (
     <nav className="hideOnMobile">
@@ -28,7 +35,8 @@ const Navbar: FC<INavbarProps> = ({ activeCategory, setActiveCategory }) => {
             })}
             onClick={() => {
               setActiveCategory(category.category);
-              setQueryParams({ category: category.category });
+              pushToLanding();
+              updateQueryStates({ category: category.category, q: null });
             }}
           >
             {category.icon}
