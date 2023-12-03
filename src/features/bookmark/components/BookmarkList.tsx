@@ -11,7 +11,7 @@ interface IBookmarkListProps {
 }
 
 const BookmarkList: FC<IBookmarkListProps> = ({ bookmarks }) => {
-  if (bookmarks.length === 0)
+  if (!bookmarks || bookmarks?.length === 0)
     return <ErrorEmptyHandler text="Nothing to see here." />;
 
   return (

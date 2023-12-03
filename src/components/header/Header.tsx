@@ -1,17 +1,19 @@
-import { FC } from "react";
-
 import SearchBar from "../search";
 import Logo from "../logo";
-
-import styles from "./Header.module.scss";
 import Link from "next/link";
 import Button from "@/ui/button";
+
+import { FC } from "react";
+import { useAuthActions } from "@/features/auth/context/AuthContext";
+
+import styles from "./Header.module.scss";
 
 interface IHeaderProps {
   isLanding: boolean;
 }
 
 const Header: FC<IHeaderProps> = ({ isLanding }) => {
+  const { logout } = useAuthActions();
   return (
     <div className={styles.container}>
       <Logo className="hideOnMobile" />
@@ -25,6 +27,8 @@ const Header: FC<IHeaderProps> = ({ isLanding }) => {
           variant="secondary"
         />
       </Link>
+
+      <Button className={styles.logout} label="Logout" onClick={logout} />
     </div>
   );
 };

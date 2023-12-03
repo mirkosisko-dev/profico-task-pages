@@ -1,7 +1,7 @@
-import Tabs from "@/components/tabs";
 import clsx from "clsx";
 import NewsList from "../news/components/NewsList";
 import LatestNews from "../news/components/latestNews/LatestNews";
+import ErrorEmptyHandler from "@/components/error";
 
 import { TABS } from "@/components/tabs/constants";
 import { FC } from "react";
@@ -11,7 +11,6 @@ import { IBookmark } from "../bookmark/types";
 import { useTabsState } from "../tabs/context/TabsContext";
 
 import styles from "./Landing.module.scss";
-import ErrorEmptyHandler from "@/components/error";
 
 interface IMobileLandingProps {
   news: InfiniteData<any, unknown> | undefined;
@@ -24,7 +23,7 @@ const MobileLanding: FC<IMobileLandingProps> = ({ news, bookmarks }) => {
   if (news?.pages[0].length === 0 && currentTab === TABS.FEATURED)
     return <ErrorEmptyHandler text="Nothing to see here." />;
 
-  if (bookmarks.length === 0 && currentTab === TABS.BOOKMARKS)
+  if (!bookmarks || (bookmarks.length === 0 && currentTab === TABS.BOOKMARKS))
     return <ErrorEmptyHandler text="Nothing to see here." />;
 
   const renderTab = () => {
