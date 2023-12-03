@@ -44,7 +44,7 @@ const BookmarkCard: FC<IBookmarkCardProps> = ({ article, className }) => {
         </div>
 
         <div className={clsx("author", "hideOnMobile", styles.author)}>
-          {article.author}
+          {article.author && truncate(article.author, 20)}
         </div>
       </div>
     </div>
