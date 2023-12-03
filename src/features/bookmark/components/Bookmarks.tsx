@@ -25,6 +25,8 @@ const Bookmarks: FC<IBookmarksProps> = ({}) => {
   // TODO: Add skeletons
   if (isLoading) return <div>Loading...</div>;
 
+  if (!bookmarks) return <div>Nothing to see here</div>;
+
   return (
     <div className={styles.container}>
       <BookmarkList bookmarks={bookmarks!} />
