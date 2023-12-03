@@ -1,0 +1,12 @@
+.container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 8px;
+
+  z-index: 99;
+
+  cursor: pointer;
+
+  transform: rotate(180deg);
+}

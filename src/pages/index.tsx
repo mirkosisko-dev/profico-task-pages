@@ -1,7 +1,10 @@
-import { Auth } from "@/features/auth/components";
+import Layout from "@/components/layout";
+import Landing from "@/features/landing";
 
-const auth = () => {
-  return <Auth />;
-};
-
-export default auth;
+export default function Home() {
+  return (
+    <Layout isLanding={true}>
+      <Landing />
+    </Layout>
+  );
+}

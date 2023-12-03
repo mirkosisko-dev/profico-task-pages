@@ -1,25 +1,24 @@
-import useGetBookmarks from "../hooks/useGetBookmarks";
-
-import { FC, useEffect } from "react";
-import { BookmarkList } from ".";
-import { useAuthState } from "@/features/auth/context/AuthContext";
-import { useRouter } from "next/router";
-
-import styles from "@/features/landing/Landing.module.scss";
 import Skeleton from "@/components/skeleton";
 import ErrorEmptyHandler from "@/components/error";
+
+import useGetBookmarks from "../hooks/useGetBookmarks";
+
+import { FC } from "react";
+import { BookmarkList } from ".";
+import { useAuthState } from "@/features/auth/context/AuthContext";
+
+import styles from "@/features/landing/Landing.module.scss";
 
 interface IBookmarksProps {}
 
 const Bookmarks: FC<IBookmarksProps> = ({}) => {
   const { data: bookmarks, isError, isLoading } = useGetBookmarks();
-
   const { authenticated } = useAuthState();
-  const router = useRouter();
 
-  useEffect(() => {
-    if (!authenticated) router.push("/");
-  }, [authenticated, router]);
+  if (!authenticated)
+    return (
+      <ErrorEmptyHandler text="You need to be logged in to access the Bookmark feature." />
+    );
 
   if (isError) return <ErrorEmptyHandler text="Oops! Something went wrong." />;
 

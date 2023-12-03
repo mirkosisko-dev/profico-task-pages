@@ -3,6 +3,8 @@ import NewsList from "../news/components/NewsList";
 import LatestNews from "../news/components/latestNews/LatestNews";
 import ErrorEmptyHandler from "@/components/error";
 
+import useIsMobile from "@/hooks/useIsMobile";
+
 import { TABS } from "@/components/tabs/constants";
 import { FC } from "react";
 import { BookmarkList } from "../bookmark/components";
@@ -20,10 +22,14 @@ interface IMobileLandingProps {
 const MobileLanding: FC<IMobileLandingProps> = ({ news, bookmarks }) => {
   const { currentTab } = useTabsState();
 
+  const isMobile = useIsMobile();
+
+  if (!isMobile) return;
+
   if (news?.pages[0].length === 0 && currentTab === TABS.FEATURED)
     return <ErrorEmptyHandler text="Nothing to see here." />;
 
-  if (!bookmarks || (bookmarks.length === 0 && currentTab === TABS.BOOKMARKS))
+  if (!bookmarks && currentTab === TABS.BOOKMARKS)
     return <ErrorEmptyHandler text="Nothing to see here." />;
 
   const renderTab = () => {

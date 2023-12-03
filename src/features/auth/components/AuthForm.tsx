@@ -25,7 +25,7 @@ const AuthForm: FC<IAuthFormProps> = ({ isLogin = "false", changeAuth }) => {
 
   const onSuccess = (successMessage: string) => {
     toast.success(successMessage);
-    router.push("/landing");
+    router.push("/");
   };
 
   const { mutateAsync: createUser } = useCreateUser(() =>
