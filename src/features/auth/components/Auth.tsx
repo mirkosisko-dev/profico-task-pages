@@ -1,14 +1,20 @@
 import Logo from "@/components/logo";
 import AuthForm from "./AuthForm";
 
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { IAuthForm } from "../types";
+import { useAuthState } from "../context/AuthContext";
+import { useRouter } from "next/router";
 
 import styles from "./Auth.module.scss";
 
 const Auth: FC = () => {
   const [isLogin, setIsLogin] = useState(true);
+
+  const router = useRouter();
+
+  const { authenticated } = useAuthState();
 
   const methods = useForm<IAuthForm>({
     defaultValues: {
@@ -16,6 +22,10 @@ const Auth: FC = () => {
       password: "",
     },
   });
+
+  useEffect(() => {
+    if (authenticated) router.push("/landing");
+  }, [authenticated, router]);
 
   return (
     <div className={styles.container}>

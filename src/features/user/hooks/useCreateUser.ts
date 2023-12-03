@@ -4,7 +4,7 @@ import { IAuthForm } from "@/features/auth/types";
 
 const useCreateUser = (onSuccess?: () => void) =>
   useMutation({
-    mutationFn: (body: IAuthForm) => createUser(body, onSuccess),
+    mutationFn: (body: IAuthForm) => createUser(body),
     onSuccess,
   });
 

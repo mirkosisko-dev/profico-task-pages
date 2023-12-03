@@ -3,7 +3,7 @@ import Landing from "@/features/landing";
 
 export default function Home() {
   return (
-    <Layout>
+    <Layout isLanding={true}>
       <Landing />
     </Layout>
   );

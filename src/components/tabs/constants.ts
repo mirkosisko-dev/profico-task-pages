@@ -1,6 +1,7 @@
 export enum TABS {
   FEATURED = "featured",
   LATEST = "latest",
+  BOOKMARKS = "bookmarks",
 }
 
 export const tabs = [
@@ -11,5 +12,9 @@ export const tabs = [
   {
     id: TABS.LATEST,
     title: "Latest",
+  },
+  {
+    id: TABS.BOOKMARKS,
+    title: "Bookmarks",
   },
 ];

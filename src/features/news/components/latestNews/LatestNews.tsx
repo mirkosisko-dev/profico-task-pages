@@ -2,14 +2,14 @@ import React, { FC } from "react";
 import clsx from "clsx";
 import Pulse from "@/components/pulse";
 
-import useGetLatestNews from "../../api/useGetLatestNews";
+import useGetLatestNews from "../../hooks/useGetLatestNews";
 
 import ChevronIcon from "../../../../../public/icons/chevron.svg";
 
-import { IArticle } from "@/shared/types";
+import { IArticle } from "@/features/news/types";
+import { parseAsInteger, useQueryStates } from "next-usequerystate";
 
 import styles from "./LatestNews.module.scss";
-import { parseAsInteger, useQueryStates } from "next-usequerystate";
 
 interface ILatestNewsProps {}
 

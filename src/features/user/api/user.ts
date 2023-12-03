@@ -1,34 +1,29 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { IUser } from "../types";
 
 type CreateUserBody = {
   email: string;
   password: string;
 };
 
-const createUser = async (
-  body: CreateUserBody,
-  onSuccess?: () => void
-): Promise<void> => {
+const createUser = async (body: CreateUserBody): Promise<IUser> => {
   try {
     const response = await axios.post("/api/users/create", body);
-    if (onSuccess) onSuccess();
     return response.data;
   } catch (error: any) {
     toast.error(error.message);
+    throw error;
   }
 };
 
-const authenticateUser = async (
-  body: CreateUserBody,
-  onSuccess?: () => void
-): Promise<void> => {
+const authenticateUser = async (body: CreateUserBody): Promise<IUser> => {
   try {
     const response = await axios.post("/api/users/authenticate", body);
-    if (onSuccess) onSuccess();
     return response.data;
   } catch (error: any) {
     toast.error(error.message);
+    throw error;
   }
 };
 

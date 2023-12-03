@@ -1,5 +1,6 @@
-import { IArticle } from "@/shared/types";
 import axios from "axios";
+
+import { IArticle } from "@/features/news/types";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 interface IResponse {

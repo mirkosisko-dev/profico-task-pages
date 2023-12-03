@@ -6,14 +6,15 @@ import { navLinks } from "../navbar/constants";
 
 interface ILayoutProps {
   children: React.ReactNode;
+  isLanding: boolean;
 }
 
-const Layout: FC<ILayoutProps> = ({ children }) => {
+const Layout: FC<ILayoutProps> = ({ children, isLanding }) => {
   const [activeCategory, setActiveCategory] = useState(navLinks[0].category);
 
   return (
     <div className="layout">
-      <Header />
+      <Header isLanding={isLanding} />
       <MobileNavbar
         activeCategory={activeCategory}
         setActiveCategory={setActiveCategory}

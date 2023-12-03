@@ -4,14 +4,24 @@ import SearchBar from "../search";
 import Logo from "../logo";
 
 import styles from "./Header.module.scss";
+import Link from "next/link";
+import Button from "@/ui/button";
 
-interface IHeaderProps {}
+interface IHeaderProps {
+  isLanding: boolean;
+}
 
-const Header: FC<IHeaderProps> = ({}) => {
+const Header: FC<IHeaderProps> = ({ isLanding }) => {
   return (
     <div className={styles.container}>
       <Logo className="hideOnMobile" />
       <SearchBar />
+      <Link href={isLanding ? "/bookmarks" : "/landing"}>
+        <Button
+          label={isLanding ? "Bookmarks" : "Featured"}
+          variant="secondary"
+        />
+      </Link>
     </div>
   );
 };

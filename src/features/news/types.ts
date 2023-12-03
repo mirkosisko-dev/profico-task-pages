@@ -16,6 +16,6 @@ export interface IArticle {
 }
 
 export interface ISource {
-  id: null;
+  id: string | null;
   name: string;
 }

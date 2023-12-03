@@ -5,14 +5,14 @@ import { FC } from "react";
 import { useFormContext } from "react-hook-form";
 import { IAuthForm } from "../types";
 import { emailValidation } from "@/helpers/emailValidation";
+import { useAuthActions } from "../context/AuthContext";
+import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
 import useCreateUser from "../../user/hooks/useCreateUser";
 import useAuthenticateUser from "../../user/hooks/useVerifyUser";
 
 import styles from "./AuthForm.module.scss";
-import { useAuthActions } from "../context/AuthContext";
-import { toast } from "react-toastify";
 
 interface IAuthFormProps {
   isLogin?: boolean;
@@ -24,7 +24,6 @@ const AuthForm: FC<IAuthFormProps> = ({ isLogin = "false", changeAuth }) => {
   const { login } = useAuthActions();
 
   const onSuccess = (successMessage: string) => {
-    login({ email: getValues("email") });
     toast.success(successMessage);
     router.push("/landing");
   };
@@ -38,15 +37,16 @@ const AuthForm: FC<IAuthFormProps> = ({ isLogin = "false", changeAuth }) => {
 
   const {
     handleSubmit,
-    getValues,
     control,
     formState: { errors, isDirty, isValid },
   } = useFormContext<IAuthForm>();
 
   const onSubmit = async (data: IAuthForm) => {
+    let user;
     isLogin
-      ? await authenticateUser({ ...data })
-      : await createUser({ ...data });
+      ? (user = await authenticateUser({ ...data }))
+      : (user = await createUser({ ...data }));
+    if (user) login(user);
   };
 
   return (

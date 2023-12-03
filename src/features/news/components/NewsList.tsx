@@ -1,8 +1,7 @@
-import { FC } from "react";
-
 import NewsCard from "./NewsCard";
 
-import { IArticle } from "@/shared/types";
+import { FC } from "react";
+import { IArticle } from "@/features/news/types";
 
 import styles from "./NewsList.module.scss";
 
