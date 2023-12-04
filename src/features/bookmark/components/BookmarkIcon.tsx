@@ -4,7 +4,7 @@ import { FC } from "react";
 import { toast } from "react-toastify";
 import { useAuthState } from "@/features/auth/context/AuthContext";
 
-import BookmarkSvg from "../../../../public/icons/bookmark.svg";
+import BookmarkSvg from "@/assets/icons/bookmark.svg";
 
 import useDeleteBookmark from "../hooks/useDeleteBookmark";
 import useCreateBookmark from "../hooks/useCreateBookmark";

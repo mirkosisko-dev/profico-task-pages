@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import Image from "next/image";
 import React from "react";
+import SearchIcon from "@/assets/icons/search.svg";
 
 import useIsMobile from "@/hooks/useIsMobile";
 
@@ -26,7 +26,7 @@ const SearchBar: FC<ISearchBarProps> = () => {
   const isMobile = useIsMobile();
   const debouncedQuery = useDebounce(q, 400);
 
-  const { push, pathname } = useRouter();
+  const { push } = useRouter();
   const { setCurrentTab } = useTabsState();
 
   const handleOnChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -51,8 +51,12 @@ const SearchBar: FC<ISearchBarProps> = () => {
   }, [debouncedQuery, isMobile, setCurrentTab]);
 
   return (
-    <form onSubmit={onSubmit} className={styles.container}>
-      <Image alt="search icon" src="/icons/search.svg" height={16} width={16} />
+    <form
+      onSubmit={onSubmit}
+      className={styles.container}
+      data-testid="search-bar"
+    >
+      <SearchIcon />
       <input
         onChange={handleOnChange}
         className={styles.input}
