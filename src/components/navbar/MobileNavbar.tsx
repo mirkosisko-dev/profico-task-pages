@@ -3,6 +3,9 @@ import clsx from "clsx";
 import Logo from "../logo";
 import SearchBar from "../search";
 
+import HamburgerIcon from "@/assets/icons/hamburger.svg";
+import CloseIcon from "@/assets/icons/close.svg";
+
 import { FC, useState } from "react";
 import { navLinks } from "./constants";
 import { parseAsString, useQueryStates } from "next-usequerystate";
@@ -34,29 +37,19 @@ const Navbar: FC<INavbarProps> = ({ activeCategory, setActiveCategory }) => {
 
       {!isMenuOpen && (
         <div className={styles.openIcon} onClick={toggleMenu}>
-          <Image
-            alt="hamburger icon"
-            src="/icons/hamburger.svg"
-            width={20}
-            height={24}
-          />
+          <HamburgerIcon />
         </div>
       )}
 
       <div className={clsx(styles.menu, { [styles.open]: isMenuOpen })}>
         <Logo />
 
-        <SearchBar />
+        <SearchBar testId="search-mobile" />
 
         <ul className={styles.navLinks}>
           {isMenuOpen && (
             <div className={styles.closeIcon} onClick={toggleMenu}>
-              <Image
-                alt="hamburger icon"
-                src="/icons/close.svg"
-                width={20}
-                height={24}
-              />
+              <CloseIcon />
             </div>
           )}
 

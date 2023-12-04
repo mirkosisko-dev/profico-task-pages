@@ -21,7 +21,7 @@ const Header: FC<IHeaderProps> = ({ isLanding }) => {
   return (
     <div className={styles.container}>
       <Logo className="hideOnMobileAndTablet" />
-      <SearchBar />
+      <SearchBar testId="search-desktop" />
       <Link
         href={isLanding ? "/bookmarks" : "/"}
         className="hideOnMobileAndTablet"
