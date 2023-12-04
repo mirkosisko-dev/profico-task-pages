@@ -10,6 +10,7 @@ import ChevronIcon from "@/assets/icons/chevron.svg";
 
 import { IArticle } from "@/features/news/types";
 import { parseAsInteger, useQueryStates } from "next-usequerystate";
+import { generateId } from "@/helpers/generateId";
 
 import styles from "./LatestNews.module.scss";
 
@@ -56,7 +57,10 @@ const LatestNews: FC<ILatestNewsProps> = ({ className }) => {
         {latestNews?.pages.map((page, i) => (
           <div key={i} className={styles.articleContainer}>
             {page.news.map((article: IArticle) => (
-              <div key={article.source.id} className={styles.article}>
+              <div
+                key={generateId(article.publishedAt, article.url)}
+                className={styles.article}
+              >
                 <p className={clsx("label", styles.time)}>12:00</p>
                 <p>{article.title}</p>
               </div>

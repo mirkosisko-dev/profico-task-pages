@@ -1,11 +1,12 @@
 import NewsCard from "./NewsCard";
 import clsx from "clsx";
+import PlaceholderCard from "@/components/placeholderCard";
 
 import { FC } from "react";
 import { IArticle } from "@/features/news/types";
+import { generateId } from "@/helpers/generateId";
 
 import styles from "./NewsList.module.scss";
-import PlaceholderCard from "@/components/placeholderCard";
 
 interface INewsListProps {
   news: IArticle[];
@@ -23,7 +24,10 @@ const NewsList: FC<INewsListProps> = ({
       className={clsx(styles.container, { [className as string]: className })}
     >
       {news.map((article) => (
-        <NewsCard key={article.url} article={article} />
+        <NewsCard
+          key={generateId(article.publishedAt, article.url)}
+          article={article}
+        />
       ))}
       {isFirstPage && <PlaceholderCard />}
     </div>

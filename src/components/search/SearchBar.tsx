@@ -27,7 +27,7 @@ const SearchBar: FC<ISearchBarProps> = ({ testId }) => {
   const isMobile = useIsMobile();
   const debouncedQuery = useDebounce(q, 400);
 
-  const { push } = useRouter();
+  const router = useRouter();
   const { setCurrentTab } = useTabsState();
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -35,13 +35,13 @@ const SearchBar: FC<ISearchBarProps> = ({ testId }) => {
   };
 
   const pushToLanding = () => {
-    push({ pathname: "/", query: { ...queryStates } });
+    router.push({ pathname: "/", query: { ...queryStates } });
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     updateQueryStates({ q, category: null });
-    pushToLanding();
+    router.pathname.includes("/bookmarks") && pushToLanding();
   };
 
   useEffect(() => {
