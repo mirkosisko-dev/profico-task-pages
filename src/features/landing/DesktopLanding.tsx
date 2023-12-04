@@ -40,6 +40,7 @@ const DesktopLanding: FC<IDesktopLandingProps> = ({ news }) => {
         <NewsList
           className={styles.newsList}
           news={news.pages[0].slice(0, 3)}
+          isFirstPage={true}
         />
         <LatestNews className={styles.latestNews} />
       </div>

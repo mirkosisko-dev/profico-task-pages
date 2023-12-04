@@ -38,7 +38,8 @@ const LatestNews: FC<ILatestNewsProps> = ({ className }) => {
     },
   });
 
-  if (status === "pending") return <Skeleton array={[1]} />;
+  if (status === "pending")
+    return <Skeleton array={[1]} className={styles.skeleton} />;
   if (status === "error")
     return <ErrorEmptyHandler text="Nothing to see here." />;
 

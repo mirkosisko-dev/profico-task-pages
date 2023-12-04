@@ -1,14 +1,18 @@
 import { FC } from "react";
 
 import styles from "./Skeleton.module.scss";
+import clsx from "clsx";
 
 interface ISkeletonProps {
   array: number[];
+  className?: string;
 }
 
-const Skeleton: FC<ISkeletonProps> = ({ array }) => {
+const Skeleton: FC<ISkeletonProps> = ({ array, className }) => {
   return (
-    <div className={styles.container}>
+    <div
+      className={clsx(styles.container, { [className as string]: className })}
+    >
       {array.map((_, index) => (
         <div key={index} className={styles.skeleton}>
           <div className={styles.skeletonImage}></div>
