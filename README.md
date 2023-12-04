@@ -24,3 +24,13 @@ The app is deployed on vercel, you can visit it on [this](https://profico-task-p
 3. Start local dev server
 
 `npm run dev`
+
+### Testing
+
+1. Unit testing
+
+`npm run test`
+
+2. E2E testing
+
+`npm run test:e2e`
