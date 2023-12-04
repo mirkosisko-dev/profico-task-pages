@@ -10,7 +10,7 @@
   justify-items: center;
   gap: 22px;
 
-  @include media($tablet) {
+  @include media($desktop) {
     grid-template-columns: repeat(3, 1fr);
   }
 }

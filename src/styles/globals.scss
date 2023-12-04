@@ -24,7 +24,7 @@ body {
 
   padding: 24px 16px;
 
-  @include media($tablet) {
+  @include media($desktop) {
     padding: 60px 170px;
   }
 }

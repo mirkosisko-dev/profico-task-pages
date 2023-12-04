@@ -18,6 +18,12 @@ interface INewsCardProps {
 
 const NewsCard: FC<INewsCardProps> = ({ article, className }) => {
   const { data: bookmarks } = useGetBookmarks();
+  const imageUrl =
+    article.urlToImage &&
+    (article?.urlToImage?.startsWith("https:")
+      ? article.urlToImage
+      : `https:${article.urlToImage}`);
+
   return (
     <div
       className={clsx(styles.container, {
@@ -39,7 +45,7 @@ const NewsCard: FC<INewsCardProps> = ({ article, className }) => {
       />
       <div className={styles.image}>
         <Image
-          src={article.urlToImage || "/images/no_image.png"}
+          src={imageUrl || "/images/no_image.png"}
           alt={`${article.description} image`}
           fill
           style={{ objectFit: "cover" }}
@@ -50,10 +56,12 @@ const NewsCard: FC<INewsCardProps> = ({ article, className }) => {
         <div className={styles.tagAndTitle}>
           <div className={clsx("label", styles.tag)}>TAG</div>
 
-          <div className={styles.title}>{truncate(article.title, 50)}</div>
+          <div className={styles.title}>
+            {article.title && truncate(article.title, 50)}
+          </div>
         </div>
 
-        <div className={clsx("author", "hideOnMobile", styles.author)}>
+        <div className={clsx("author", "hideOnMobileTablet", styles.author)}>
           {article.author && truncate(article.author, 20)}
         </div>
       </div>

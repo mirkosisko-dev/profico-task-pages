@@ -19,7 +19,7 @@ const Navbar: FC<INavbarProps> = ({ activeCategory, setActiveCategory }) => {
   });
 
   return (
-    <nav className="hideOnMobile">
+    <nav className="hideOnMobileAndTablet">
       <ul className={styles.navLinks}>
         {navLinks.map((category) => (
           <Link

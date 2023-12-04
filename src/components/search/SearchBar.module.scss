@@ -14,7 +14,7 @@
 
   padding: 16px 12px;
 
-  @include media($tablet) {
+  @include media($desktop) {
     flex: 1;
   }
 
@@ -42,7 +42,7 @@
       background: $evenDarkerOrange;
     }
 
-    @include media($tablet) {
+    @include media($desktop) {
       display: flex;
       justify-content: center;
       align-items: center;

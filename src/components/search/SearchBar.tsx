@@ -59,7 +59,7 @@ const SearchBar: FC<ISearchBarProps> = () => {
         placeholder="Search news"
       />
 
-      <button className={clsx("hideOnMobile", styles.button)}>
+      <button className={clsx("hideOnMobileAndTablet", styles.button)}>
         <p className={styles.btn}>Search</p>
       </button>
     </form>

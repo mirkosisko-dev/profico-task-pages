@@ -1,7 +1,7 @@
 import Input from "@/ui/input";
 import Button from "@/ui/button";
 
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { IAuthForm } from "../types";
 import { emailValidation } from "@/helpers/emailValidation";
@@ -20,6 +20,7 @@ interface IAuthFormProps {
 }
 
 const AuthForm: FC<IAuthFormProps> = ({ isLogin = "false", changeAuth }) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const { login } = useAuthActions();
 
@@ -42,11 +43,13 @@ const AuthForm: FC<IAuthFormProps> = ({ isLogin = "false", changeAuth }) => {
   } = useFormContext<IAuthForm>();
 
   const onSubmit = async (data: IAuthForm) => {
+    setIsSubmitting(true);
     let user;
     isLogin
       ? (user = await authenticateUser({ ...data }))
       : (user = await createUser({ ...data }));
     if (user) login(user);
+    setIsSubmitting(false);
   };
 
   return (
@@ -80,9 +83,9 @@ const AuthForm: FC<IAuthFormProps> = ({ isLogin = "false", changeAuth }) => {
       />
 
       <Button
-        label="Submit"
+        label={isSubmitting ? "Submitting..." : "Submit"}
         onClick={handleSubmit(onSubmit)}
-        disabled={!isDirty || !isValid}
+        disabled={!isDirty || !isValid || isSubmitting}
       />
       <div className={styles.text}>
         <p onClick={changeAuth}>

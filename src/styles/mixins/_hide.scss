@@ -3,13 +3,13 @@
 
 @mixin hideOnMobile {
   display: none !important;
-  @include media($tablet) {
-    display: inherit !important;
+  @include media($desktop) {
+    display: inherit;
   }
 }
 
 @mixin hideOnDesktop {
-  @include media($tablet) {
+  @include media($desktop) {
     display: none !important;
   }
 }

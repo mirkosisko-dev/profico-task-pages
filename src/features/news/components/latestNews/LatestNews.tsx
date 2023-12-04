@@ -13,9 +13,11 @@ import { parseAsInteger, useQueryStates } from "next-usequerystate";
 
 import styles from "./LatestNews.module.scss";
 
-interface ILatestNewsProps {}
+interface ILatestNewsProps {
+  className?: string;
+}
 
-const LatestNews: FC<ILatestNewsProps> = () => {
+const LatestNews: FC<ILatestNewsProps> = ({ className }) => {
   const [queryStates, updateQueryStates] = useQueryStates({
     pageSize: parseAsInteger,
     page: parseAsInteger,
@@ -41,7 +43,9 @@ const LatestNews: FC<ILatestNewsProps> = () => {
     return <ErrorEmptyHandler text="Nothing to see here." />;
 
   return (
-    <div className={styles.container}>
+    <div
+      className={clsx(styles.container, { [className as string]: className })}
+    >
       <div className={styles.title}>
         <Pulse />
         <p>Latest news</p>

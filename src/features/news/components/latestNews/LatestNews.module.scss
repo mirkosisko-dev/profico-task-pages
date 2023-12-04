@@ -14,6 +14,8 @@
 
   max-height: 550px;
 
+  overscroll-behavior: contain;
+
   .title {
     font-family: "InterV";
     font-size: 16px;

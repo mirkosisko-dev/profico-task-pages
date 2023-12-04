@@ -11,7 +11,7 @@
 
   animation: scale 4s infinite;
 
-  @include media($tablet) {
+  @include media($desktop) {
     grid-template-columns: repeat(3, 1fr);
   }
 
@@ -24,7 +24,7 @@
     border-radius: 8px;
     overflow: hidden;
 
-    @include media($tablet) {
+    @include media($desktop) {
       align-items: center;
     }
 
@@ -32,7 +32,7 @@
       background-color: $skeletonContent;
       min-height: 200px;
 
-      @include media($tablet) {
+      @include media($desktop) {
         min-height: 50%;
       }
     }
@@ -68,7 +68,7 @@
       }
 
       .skeletonAuthor {
-        @include media($tablet) {
+        @include media($desktop) {
           width: 30%;
           height: 12px;
           background-color: $skeletonContent;

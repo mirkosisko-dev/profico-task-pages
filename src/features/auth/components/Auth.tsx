@@ -5,14 +5,11 @@ import Back from "@/components/back";
 import { FC, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { IAuthForm } from "../types";
-import { useRouter } from "next/router";
 
 import styles from "./Auth.module.scss";
 
 const Auth: FC = () => {
   const [isLogin, setIsLogin] = useState(true);
-
-  const router = useRouter();
 
   const methods = useForm<IAuthForm>({
     defaultValues: {

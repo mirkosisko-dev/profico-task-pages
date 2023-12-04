@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const tabletSize = 768;
+const tabletSize = 1028;
 
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState<boolean>();

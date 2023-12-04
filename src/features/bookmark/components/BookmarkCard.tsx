@@ -40,10 +40,12 @@ const BookmarkCard: FC<IBookmarkCardProps> = ({ article, className }) => {
         <div className={styles.tagAndTitle}>
           <div className={clsx("label", styles.tag)}>TAG</div>
 
-          <div className={styles.title}>{truncate(article.title, 50)}</div>
+          <div className={styles.title}>
+            {article.title && truncate(article.title, 50)}
+          </div>
         </div>
 
-        <div className={clsx("author", "hideOnMobile", styles.author)}>
+        <div className={clsx("author", "hideOnMobileTablet", styles.author)}>
           {article.author && truncate(article.author, 20)}
         </div>
       </div>

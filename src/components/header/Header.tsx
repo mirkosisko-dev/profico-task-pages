@@ -20,9 +20,12 @@ const Header: FC<IHeaderProps> = ({ isLanding }) => {
   const { logout } = useAuthActions();
   return (
     <div className={styles.container}>
-      <Logo className="hideOnMobile" />
+      <Logo className="hideOnMobileAndTablet" />
       <SearchBar />
-      <Link href={isLanding ? "/bookmarks" : "/"} className="hideOnMobile">
+      <Link
+        href={isLanding ? "/bookmarks" : "/"}
+        className="hideOnMobileAndTablet"
+      >
         <Button
           label={isLanding ? "Bookmarks" : "Featured"}
           variant="secondary"

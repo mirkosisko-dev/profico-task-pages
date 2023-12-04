@@ -10,12 +10,31 @@
   gap: 14px;
 }
 
+.desktopLanding {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  .wrapper {
+    display: flex;
+    gap: 22px;
+
+    .latestNews {
+      max-height: 100%;
+      max-width: 400px;
+    }
+
+    .newsList {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
 .container {
   width: 100%;
   display: flex;
   flex-direction: column;
-  // justify-content: center;
   align-items: center;
+
   gap: 14px;
 
   .mobile {

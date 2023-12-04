@@ -30,7 +30,7 @@
     transform: scale(1.02);
   }
 
-  @include media($tablet) {
+  @include media($desktop) {
     align-items: center;
     max-width: 300px;
   }
@@ -41,7 +41,7 @@
     width: 100%;
     min-height: 70%;
 
-    @include media($tablet) {
+    @include media($desktop) {
       min-height: 50%;
     }
   }
