@@ -21,7 +21,11 @@ The app is deployed on vercel, you can visit it on [this](https://profico-task-p
 
 `cp .env.template .env`
 
-3. Start local dev server
+3. Create local .env.development.local file
+
+`cp .env.development.template .env.development.local`
+
+4. Start local dev server
 
 `npm run dev`
 
