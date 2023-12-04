@@ -1,6 +1,6 @@
 # Profico task
 
-The task was to create a simple frontend app which communicated with an external API and displays the requested data.
+The task was to create a simple frontend app which communicates with an external API and displays the requested data.
 
 ## Description
 
