@@ -6,8 +6,8 @@ import useGetBookmarks from "@/features/bookmark/hooks/useGetBookmarks";
 import { truncate } from "@/helpers/truncate";
 import { IArticle } from "@/features/news/types";
 import { FC } from "react";
-import { generateId } from "@/shared/helpers";
 import { BookmarkIcon } from "@/features/bookmark/components";
+import { generateId } from "@/helpers/generateId";
 
 import styles from "./NewsCard.module.scss";
 

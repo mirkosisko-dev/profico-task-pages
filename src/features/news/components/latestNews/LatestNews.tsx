@@ -6,7 +6,7 @@ import ErrorEmptyHandler from "@/components/error";
 
 import useGetLatestNews from "../../hooks/useGetLatestNews";
 
-import ChevronIcon from "../../../../../public/icons/chevron.svg";
+import ChevronIcon from "@/assets/icons/chevron.svg";
 
 import { IArticle } from "@/features/news/types";
 import { parseAsInteger, useQueryStates } from "next-usequerystate";

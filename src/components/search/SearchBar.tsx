@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import Image from "next/image";
 import React from "react";
+import SearchIcon from "@/assets/icons/search.svg";
 
 import useIsMobile from "@/hooks/useIsMobile";
 
@@ -13,11 +13,12 @@ import { TABS } from "../tabs/constants";
 
 import styles from "./SearchBar.module.scss";
 
-interface ISearchBarProps {}
+interface ISearchBarProps {
+  testId: string;
+}
 
-const SearchBar: FC<ISearchBarProps> = () => {
-  const [q, setQ] = React.useState<string | undefined>();
-
+const SearchBar: FC<ISearchBarProps> = ({ testId }) => {
+  const [q, setQ] = React.useState<string | null>();
   const [queryStates, updateQueryStates] = useQueryStates({
     q: parseAsString,
     category: parseAsString,
@@ -26,12 +27,12 @@ const SearchBar: FC<ISearchBarProps> = () => {
   const isMobile = useIsMobile();
   const debouncedQuery = useDebounce(q, 400);
 
-  const { push, pathname } = useRouter();
+  const { push } = useRouter();
   const { setCurrentTab } = useTabsState();
 
-  const handleOnChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setQ(e.target.value);
-  }, []);
+  };
 
   const pushToLanding = () => {
     push({ pathname: "/", query: { ...queryStates } });
@@ -39,8 +40,8 @@ const SearchBar: FC<ISearchBarProps> = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    updateQueryStates({ q, category: null });
     pushToLanding();
-    if (!isMobile) updateQueryStates({ q: debouncedQuery, category: null });
   };
 
   useEffect(() => {
@@ -51,15 +52,23 @@ const SearchBar: FC<ISearchBarProps> = () => {
   }, [debouncedQuery, isMobile, setCurrentTab]);
 
   return (
-    <form onSubmit={onSubmit} className={styles.container}>
-      <Image alt="search icon" src="/icons/search.svg" height={16} width={16} />
+    <form
+      onSubmit={onSubmit}
+      className={styles.container}
+      data-testid={`${testId}-bar`}
+    >
+      <SearchIcon />
       <input
+        data-testid={`${testId}-input`}
         onChange={handleOnChange}
         className={styles.input}
         placeholder="Search news"
       />
 
-      <button className={clsx("hideOnMobileAndTablet", styles.button)}>
+      <button
+        className={clsx("hideOnMobileAndTablet", styles.button)}
+        data-testid={`${testId}-submit`}
+      >
         <p className={styles.btn}>Search</p>
       </button>
     </form>

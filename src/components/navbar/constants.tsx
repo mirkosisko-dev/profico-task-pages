@@ -1,10 +1,10 @@
-import HomeIcon from "../../../public/icons/home.svg";
-import GeneralIcon from "../../../public/icons/general.svg";
-import BusinessIcon from "../../../public/icons/business.svg";
-import HealthIcon from "../../../public/icons/health.svg";
-import ScienceIcon from "../../../public/icons/science.svg";
-import SportsIcon from "../../../public/icons/sports.svg";
-import TechnologyIcon from "../../../public/icons/technology.svg";
+import HomeIcon from "@/assets/icons/home.svg";
+import GeneralIcon from "@/assets/icons/general.svg";
+import BusinessIcon from "@/assets/icons/business.svg";
+import HealthIcon from "@/assets/icons/health.svg";
+import ScienceIcon from "@/assets/icons/science.svg";
+import SportsIcon from "@/assets/icons/sports.svg";
+import TechnologyIcon from "@/assets/icons/technology.svg";
 
 export const navLinks = [
   {

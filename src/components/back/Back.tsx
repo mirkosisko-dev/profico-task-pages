@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import ChevronIcon from "../../../public/icons/chevron.svg";
+import ChevronIcon from "@/assets/icons/chevron.svg";
 
 import { FC } from "react";
 
