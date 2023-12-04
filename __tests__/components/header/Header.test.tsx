@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom";
 import Header from "@/components/header";
+
 import { screen } from "@testing-library/react";
 import { renderComponent } from "../../../jest.setup";
 
@@ -19,10 +20,11 @@ jest.mock("next-usequerystate", () => ({
 }));
 
 describe("Header Component", () => {
-  it("renders Header component with login button when not authenticated", () => {
+  it("renders Header component with the link on landing", () => {
     renderComponent(<Header isLanding={true} />);
 
-    expect(screen.getByTestId("search-bar")).toBeInTheDocument();
-    // expect(screen.getByText("Login")).toBeInTheDocument();
+    const linkElement = screen.getByTestId("link");
+
+    expect(linkElement).toHaveAttribute("href", "/bookmarks");
   });
 });

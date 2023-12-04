@@ -23,6 +23,7 @@ const Header: FC<IHeaderProps> = ({ isLanding }) => {
       <Logo className="hideOnMobileAndTablet" />
       <SearchBar testId="search-desktop" />
       <Link
+        data-testid="link"
         href={isLanding ? "/bookmarks" : "/"}
         className="hideOnMobileAndTablet"
       >
