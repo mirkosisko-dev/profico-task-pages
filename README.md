@@ -44,7 +44,7 @@ The project uses Next JS as a full-stack solution for both client and the API. R
 
 Client is built using React with Typescript: - `pages` represent file-based routing and each file represents one page - `features` contain set of features together with their components, data fetching hooks and types - `components` are being used for components shared across the application - `hooks` contain general utility hooks
 API lives under the `/pages/api` folder and it serves as a wrapper for the [News API](https://newsapi.org/docs). Each file inside the folder represents one serverless API route.
-The cloud postgres database hosted on Vercel is used to store `users` and `bookmarks`: - `POST /api/users/create` -> create new user - `POST /api/users/authenticate` -> user authentication - `GET /api/bookmarks` -> fetch user bookmarks - `POST /api/bookmarks/create` -> bookmark the article - `POST /api/bookmarks/delete` -> remove article bookmark
+The cloud postgres database hosted on Vercel is used to store `users` and `bookmarks`: - `POST /api/users/create` -> create new user - `POST /api/users/authenticate` -> user authentication - `POST /api/bookmarks` -> fetch user bookmarks - `POST /api/bookmarks/create` -> bookmark the article - `POST /api/bookmarks/delete` -> remove article bookmark
 
 ## Disclaimer
 
