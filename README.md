@@ -1,40 +1,51 @@
-# Profico task
+## About the project
 
-The task was to create a simple frontend app which communicates with an external API and displays the requested data.
-
-## Description
-
-I've used NextJs for the frontend and for the backend, the API I've used is [NewsApi](https://newsapi.org/).\
-The way I'm communicating with the API is via pages/api routes. And I'm using [vercel postgres](https://vercel.com/docs/storage/vercel-postgres) which is hosted on [vercel](https://vercel.com/) for storing data.\
-I've also created a simple auth feature as a proof of concept and bookmark feature for which the user has to be logged in. The data for these features is stored in the postgres database mentioned above.\
-The app is deployed on vercel, you can visit it on [this](https://profico-task-pages.vercel.app/) link.
+The project is a full-stack solution used to read latest news. It allows user authentication and saving (bookmarking) interesting news.
 
 ## Getting Started
 
-### Installing
+First, run the development server:
 
-1. Install dependencies
+```bash
+npm run dev
+```
 
-`npm i`
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-2. Create local .env file
+### Run the tests:
 
-`cp .env.template .env`
+Unit tests:
 
-3. Create local .env.development.local file
+```bash
+npm run test
+```
 
-`cp .env.development.template .env.development.local`
+E2E tests:
 
-4. Start local dev server
+```bash
+npm run test:e2e
+```
 
-`npm run dev`
+### Build the app:
 
-### Testing
+```bash
+npm run build
+```
 
-1. Unit testing
+and start the server
 
-`npm run test`
+```bash
+npm run start
+```
 
-2. E2E testing
+## Tech stack
 
-`npm run test:e2e`
+The project uses Next JS as a full-stack solution for both client and the API. React testing library is used for unit testing. Playwright is used for E2E tests. Fetching the data (syncing server state, caching the data in the browser etc.) is done using the React Query from Tanstack. Vercel cloud postgres database is used to store the data. The app is deployed on Vercel.
+
+Client is built using React with Typescript: - `pages` represent file-based routing and each file represents one page - `features` contain set of features together with their components, data fetching hooks and types - `components` are being used for components shared across the application - `hooks` contain general utility hooks
+API lives under the `/pages/api` folder and it serves as a wrapper for the [News API](https://newsapi.org/docs). Each file inside the folder represents one serverless API route.
+The cloud postgres database hosted on Vercel is used to store `users` and `bookmarks`: - `POST /api/users/create` -> create new user - `POST /api/users/authenticate` -> user authentication - `GET /api/bookmarks` -> fetch user bookmarks - `POST /api/bookmarks/create` -> bookmark the article - `POST /api/bookmarks/delete` -> remove article bookmark
+
+## Disclaimer
+
+The authentication and introduction of the cloud db are introduced to expand the app and as a proof of concept even though the initial task didn't require those features.

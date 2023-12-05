@@ -1,7 +1,7 @@
 import Layout from "@/components/layout";
 import Bookmarks from "@/features/bookmark/components/Bookmarks";
 
-const bookmarks = () => {
+const BookmarksPage = () => {
   return (
     <Layout isLanding={false}>
       <Bookmarks />
@@ -9,4 +9,4 @@ const bookmarks = () => {
   );
 };
 
-export default bookmarks;
+export default BookmarksPage;
